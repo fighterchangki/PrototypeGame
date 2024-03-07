@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
             EnemyHealth enemyHealth = collision.gameObject.GetComponentInParent<EnemyHealth>();
             enemyHealth.TakeDamage(damage);
 
+            //적이 죽을때
             if (enemyHealth.health <= 0 && enemyHealth.isDead == false)
             {
                 Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
