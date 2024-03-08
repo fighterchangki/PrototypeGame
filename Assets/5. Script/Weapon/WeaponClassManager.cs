@@ -9,9 +9,31 @@ public class WeaponClassManager : MonoBehaviour
     ActionStateManager actions;
 
     public WeaponManager[] weapons;
+
+    public GameObject weaponPanel;
+    public List<GameObject> weaponsUI = new List<GameObject>();
     public int currentWeaponIndex;
     private void Awake()
     {
+        weaponPanel = GameObject.Find("WeaponPanel");
+        foreach (Transform child in weaponPanel.transform)
+        {
+            weaponsUI.Add(child.gameObject);
+            Debug.Log("Inactive Child Found: " + child.name);
+            
+        }
+        //Debug.Log(allObjects.Length);
+
+        //allWeaponPanelchildren = weaponPanel.GetComponentsInChildren<Transform>();
+        //for (int i = 0; i < allWeaponPanelchildren.Length; i++)
+        //{
+        //    Debug.Log(allWeaponPanelchildren[i].gameObject.name);
+        //    if (allWeaponPanelchildren[i].gameObject.layer == 9)
+        //    {
+
+        //        //allWeaponPanelchildren.weapon = allWeaponPanelchildren[i].gameObject;
+        //    }
+        //}
         currentWeaponIndex = 0;
         for (int i = 0; i < weapons.Length; i++)
         {
@@ -49,10 +71,12 @@ public class WeaponClassManager : MonoBehaviour
         if (direction > weapons.Length-1) return;
         if (direction == currentWeaponIndex) return;//같은 값일때
         weapons[currentWeaponIndex].gameObject.SetActive(false);
+        weaponsUI[currentWeaponIndex].gameObject.SetActive(false);
         currentWeaponIndex = direction;
         weapons[currentWeaponIndex].gameObject.SetActive(true);
-        
-        
+        weaponsUI[currentWeaponIndex].SetActive(true);
+        actions.uimanager.ChangeWeapon();
+
     }
     public void WeaponPutAway()
     {

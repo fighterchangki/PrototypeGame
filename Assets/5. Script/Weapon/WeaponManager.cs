@@ -134,7 +134,7 @@ public class WeaponManager : MonoBehaviour
         TriggerMuzzleFlash();
 
         ammo.currentAmmo--;
-
+        actions.uimanager.UpdateBulletInfo();
         barrelPos.localEulerAngles = bloom.BloomAngle(barrelPos);
         audioSource.PlayOneShot(gunShot);
         for (int i = 0; i < bulletPerShot; i++)

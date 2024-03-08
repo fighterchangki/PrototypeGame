@@ -835,7 +835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363089632}
   m_LocalRotation: {x: -0, y: -0, z: 0.000000014901161, w: 1}
-  m_LocalPosition: {x: -0, y: -0.9631056, z: -0.0035763765}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -843,8 +843,8 @@ Transform:
   - {fileID: 865753620}
   - {fileID: 1166035381}
   - {fileID: 126959624}
-  m_Father: {fileID: 1264903058879030781}
-  m_RootOrder: 3
+  m_Father: {fileID: 3550511467143667377}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &591078576
 GameObject:
@@ -991,7 +991,7 @@ Transform:
   m_Children:
   - {fileID: 330212172}
   m_Father: {fileID: 3550511467143667377}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &595910430
 GameObject:
@@ -1381,6 +1381,39 @@ MonoBehaviour:
       x: 1
       y: 1
       z: 1
+--- !u!1 &870991293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870991294}
+  m_Layer: 6
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870991294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870991293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2129858523771853407}
+  - {fileID: 6927216126616183611}
+  m_Father: {fileID: 6818040247762022780}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &940112183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,7 +2095,7 @@ GameObject:
   - component: {fileID: 1217374533}
   - component: {fileID: 1217374532}
   - component: {fileID: 1217374531}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Weapon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2875,7 +2908,7 @@ GameObject:
   - component: {fileID: 1638266312}
   - component: {fileID: 1638266311}
   - component: {fileID: 1638266310}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Weapon2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3354,7 +3387,7 @@ Transform:
   - {fileID: 1488705411}
   - {fileID: 33780934}
   m_Father: {fileID: 3550511467143667377}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938651068
 GameObject:
@@ -3652,10 +3685,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitUI: {fileID: 1938651068}
+  bulletText: {fileID: 1162816790}
+  player: {fileID: 0}
+  weaponPanel: {fileID: 0}
   weaponUI:
-  - {fileID: 1217374529}
-  - {fileID: 1638266308}
-  bulletText: {fileID: 0}
+    weapon: {fileID: 0}
+    weaponUI: {fileID: 0}
 --- !u!1 &1992972588
 GameObject:
   m_ObjectHideFlags: 0
@@ -5450,7 +5485,6 @@ Transform:
   - {fileID: 7250639962190033233}
   - {fileID: 6854804140266859311}
   - {fileID: 1822864982678045470}
-  - {fileID: 363089634}
   m_Father: {fileID: 1532762969978886113}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5975,8 +6009,8 @@ GameObject:
   - component: {fileID: 2129858523771853411}
   - component: {fileID: 2129858523771853412}
   - component: {fileID: 2129858523771853409}
-  m_Layer: 0
-  m_Name: m14
+  m_Layer: 9
+  m_Name: Weapon_m14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6589,8 +6623,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640743642621673701}
-  m_LocalRotation: {x: 0.5315825, y: 0.4326992, z: 0.46866897, w: 0.5572619}
-  m_LocalPosition: {x: 0.272, y: -0.032, z: -0.002}
+  m_LocalRotation: {x: 0.53158253, y: 0.43269923, z: 0.468669, w: 0.55726194}
+  m_LocalPosition: {x: 0.272, y: -0.032000065, z: -0.002000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6600,8 +6634,8 @@ Transform:
   - {fileID: 845410004}
   - {fileID: 702289751}
   - {fileID: 1472586866}
-  m_Father: {fileID: 6818040247762022780}
-  m_RootOrder: 8
+  m_Father: {fileID: 870991294}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 10.771, y: 86.476, z: 90.26}
 --- !u!114 &2129858523771853408
 MonoBehaviour:
@@ -9097,6 +9131,7 @@ Transform:
   - {fileID: 2163690095048384076}
   - {fileID: 1020440255369195650}
   - {fileID: 345819265380608376}
+  - {fileID: 363089634}
   - {fileID: 1922313749}
   - {fileID: 592101184}
   m_Father: {fileID: 1998816536}
@@ -9836,7 +9871,7 @@ GameObject:
   - component: {fileID: 8967527331422998306}
   - component: {fileID: 8967527331422998304}
   m_Layer: 6
-  m_Name: stealthy_cat
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11121,7 +11156,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4129689956986845046}
   m_Enabled: 1
-  m_Avatar: {fileID: -5347383358793088128, guid: b68c24a8f347bb74d8510e8aef540497,
+  m_Avatar: {fileID: 4328515638414787286, guid: c015092fa94101d47a5a1f5b2dc6ea5f,
     type: 3}
   m_Controller: {fileID: 9100000, guid: e56ab9570e033e94f93c0f305b0a2230, type: 2}
   m_CullingMode: 0
@@ -14361,8 +14396,7 @@ Transform:
   - {fileID: 2858412100947406949}
   - {fileID: 1746157331}
   - {fileID: 1362450662}
-  - {fileID: 2129858523771853407}
-  - {fileID: 6927216126616183611}
+  - {fileID: 870991294}
   m_Father: {fileID: 2986949851129092584}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14674,8 +14708,8 @@ Transform:
   - {fileID: 4491367928192265287}
   - {fileID: 2335025409171801289}
   - {fileID: 2335025409281016498}
-  m_Father: {fileID: 6818040247762022780}
-  m_RootOrder: 9
+  m_Father: {fileID: 870991294}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 10.771, y: 86.476, z: 90.26}
 --- !u!4 &6950659842703864161
 Transform:
@@ -15935,8 +15969,8 @@ GameObject:
   - component: {fileID: 6927216126616183559}
   - component: {fileID: 6927216126616183552}
   - component: {fileID: 6927216126616183557}
-  m_Layer: 0
-  m_Name: Pistol
+  m_Layer: 9
+  m_Name: Weapon_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18080,6 +18114,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   rHandAim: {fileID: 1166035382}
   lHandIk: {fileID: 126959625}
+  uimanager: {fileID: 0}
 --- !u!114 &8967527331422998306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18097,6 +18132,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 2129858523771853408}
   - {fileID: 6927216126616183556}
+  weaponPanel: {fileID: 0}
+  weaponsUI: []
   currentWeaponIndex: 0
 --- !u!114 &8967527331422998307
 MonoBehaviour:

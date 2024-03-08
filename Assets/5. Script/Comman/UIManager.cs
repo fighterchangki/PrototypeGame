@@ -3,15 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject hitUI;
-    [SerializeField] private GameObject[] weaponUI;
     [SerializeField] private TMP_Text bulletText;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject weaponPanel;
+    [Serializable]
+    public class WeaponUI
+    {
+        public GameObject weapon;
+        public GameObject weaponUI;
+    }
+    public WeaponUI weaponUI = new WeaponUI();
     // Start is called before the first frame update
     void Start()
     {
-        weaponUI[0].SetActive(true);
+        weaponPanel = GameObject.Find("WeaponPanel");
+        player = GameObject.Find("Player");
+        ChangeWeapon();
+    }
+    public void ChangeWeapon()
+    {
+        Transform[] allPlayerchildren = player.GetComponentsInChildren<Transform>();
+        Transform[] allWeaponPanelchildren = weaponPanel.GetComponentsInChildren<Transform>();
+        for (int i = 0; i < allPlayerchildren.Length; i++)
+        {
+            if (allPlayerchildren[i].gameObject.layer == 9)
+            {
+                weaponUI.weapon = allPlayerchildren[i].gameObject;
+                UpdateBulletInfo();
+            }
+        }
+        for (int i = 0; i < allWeaponPanelchildren.Length; i++)
+        {
+            if (allWeaponPanelchildren[i].gameObject.layer == 10)
+            {
+                weaponUI.weaponUI = allWeaponPanelchildren[i].gameObject;
+            }
+        }
+    }
+    public void UpdateBulletInfo()
+    {
+        bulletText.text = weaponUI.weapon.GetComponent<WeaponAmmo>().currentAmmo + " / " + weaponUI.weapon.GetComponent<WeaponAmmo>().extraAmmo;
     }
     // Update is called once per frame
     void Update()

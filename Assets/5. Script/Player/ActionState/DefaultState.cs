@@ -36,6 +36,7 @@ public class DefaultState : ActionBaseState
         if (preScrollWeapon == scrollWeapon) return;
         this.scrollWeapon = scrollWeapon;
         preScrollWeapon = scrollWeapon;
+
         actions.SwitchState(actions.Swap,scrollWeapon);
     }
     bool CanReload(ActionStateManager action)

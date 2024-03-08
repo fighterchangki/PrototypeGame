@@ -12,7 +12,7 @@ public class WeaponAmmo : MonoBehaviour
     public AudioClip magOutSound;
     public AudioClip releaseSlideSound;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         currentAmmo = clipSize;
     }
@@ -39,6 +39,7 @@ public class WeaponAmmo : MonoBehaviour
                 extraAmmo = 0;// º¸Á¶ ÃÑ¾ËÀº ´Ù¾¸
             }
         }
+
     }
     // Update is called once per frame
 

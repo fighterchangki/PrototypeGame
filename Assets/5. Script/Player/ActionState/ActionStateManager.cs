@@ -11,15 +11,16 @@ public class ActionStateManager : MonoBehaviour
     [HideInInspector] public WeaponClassManager weaponClass;
     [HideInInspector] public WeaponManager currentWeapon;
     [HideInInspector] public WeaponAmmo ammo;
-     public Animator anim;
+    public Animator anim;
     public MultiAimConstraint rHandAim;
     public TwoBoneIKConstraint lHandIk;
+    public UIManager uimanager;
     AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         SwitchState(Default);
-        
+        uimanager = GameObject.Find("UIManager").GetComponent<UIManager>();
         anim = GetComponent<Animator>();
         weaponClass = GetComponent<WeaponClassManager>();
     }
@@ -37,6 +38,7 @@ public class ActionStateManager : MonoBehaviour
                 return;
             if (scrollWeapon == weaponClass.currentWeaponIndex)
                 return;
+            
         }
         currentState = state;
         currentState.EnterState(this);
@@ -44,6 +46,7 @@ public class ActionStateManager : MonoBehaviour
     public void WeaponReload()
     {
         ammo.Reload();
+        uimanager.UpdateBulletInfo();
         SwitchState(Default);
     }
     public void MagOut()
@@ -57,7 +60,6 @@ public class ActionStateManager : MonoBehaviour
     public void ReleaseSlide()
     {
         audioSource.PlayOneShot(ammo.releaseSlideSound);
-        
     }
     public void SetWeapon(WeaponManager weapon)
     {
