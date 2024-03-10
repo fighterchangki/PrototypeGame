@@ -15,6 +15,7 @@ public class ActionStateManager : MonoBehaviour
     public MultiAimConstraint rHandAim;
     public TwoBoneIKConstraint lHandIk;
     public UIManager uimanager;
+    public FrontColliderbox frontColliderBox;
     AudioSource audioSource;
     // Start is called before the first frame update
     void Start()

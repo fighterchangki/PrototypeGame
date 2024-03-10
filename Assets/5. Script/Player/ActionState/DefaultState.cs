@@ -12,7 +12,8 @@ public class DefaultState : ActionBaseState
     }
     public override void UpdateState(ActionStateManager actions)
     {
-        actions.rHandAim.weight = Mathf.Lerp(actions.rHandAim.weight, 1, 15f * Time.deltaTime);
+        if(!actions.frontColliderBox.isWall)
+            actions.rHandAim.weight = Mathf.Lerp(actions.rHandAim.weight, 1, 15f * Time.deltaTime);
         if (actions.lHandIk.weight == 0) actions.lHandIk.weight = 1;
         if (Input.GetKeyDown(KeyCode.R) && CanReload(actions))
         {

@@ -17,7 +17,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] bool semiAuto;
     [Header("Bullet Properties")]
     [SerializeField] GameObject bullet;
-    [SerializeField] Transform barrelPos;
+    [SerializeField] public Transform barrelPos;
     [SerializeField] float bulletVelocity;
     [SerializeField] int bulletPerShot;
     [Header("Sound")]

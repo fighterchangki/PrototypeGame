@@ -31,9 +31,11 @@ public class AimStateManager : MonoBehaviour
     [SerializeField] float shoulderSwapSpeed = 10;
     MovementStateManager moving;
     [Header("IK")]
+    
     public TwoBoneIKConstraint lHandIk;
     [Header("Weapon")]
     public WeaponClassManager weaponClassManager;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -63,12 +65,31 @@ public class AimStateManager : MonoBehaviour
         AimController();
         
         vCam.m_Lens.FieldOfView = Mathf.Lerp(vCam.m_Lens.FieldOfView, currentFov, fovSmoothSpeed * Time.deltaTime);
-
         Vector2 screenCentre = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray ray = Camera.main.ScreenPointToRay(screenCentre);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimMask))
         {
+
+            //if (Vector3.Distance(aimPos.position, hit.point) >= 0.0001f)
+            //{
+            //    Debug.Log(Vector3.Distance(aimPos.position, hit.point));
+            //    bodyIK.weight = 1;
+            //    headIK.weight = 1;
+            //    rHnadIK.weight = 1;
+            //}
+            //else
+            //{
+            //    Debug.Log("°Å¸®¸Ø");
+            //    bodyIK.weight = 0;
+            //    headIK.weight = 0;
+            //    rHnadIK.weight = 0;
+            //}
             aimPos.position = Vector3.Lerp(aimPos.position, hit.point, aimSmoothSpeed * Time.deltaTime);
+            aimPos.LookAt(Camera.main.transform);
+        }
+        else
+        {
+            aimPos.position = ray.GetPoint(10);
         }
         MoveCamera();//Ä«¸Þ¶óÀÌµ¿
         currentState.UpdateState(this);
@@ -78,6 +99,7 @@ public class AimStateManager : MonoBehaviour
         camFollowPos.localEulerAngles = new Vector3(yAxis.Value,camFollowPos.localEulerAngles.y,camFollowPos.localEulerAngles.z);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x,xAxis.Value,transform.eulerAngles.z);
     }
+
     void MoveCamera()
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt))xFollowPos = -xFollowPos;//¾î±ú¹Ù²Þ

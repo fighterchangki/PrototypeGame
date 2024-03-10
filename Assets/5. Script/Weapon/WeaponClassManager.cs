@@ -18,9 +18,8 @@ public class WeaponClassManager : MonoBehaviour
         weaponPanel = GameObject.Find("WeaponPanel");
         foreach (Transform child in weaponPanel.transform)
         {
-            weaponsUI.Add(child.gameObject);
-            Debug.Log("Inactive Child Found: " + child.name);
             
+            weaponsUI.Add(child.gameObject);
         }
         //Debug.Log(allObjects.Length);
 
