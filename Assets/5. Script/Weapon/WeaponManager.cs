@@ -117,6 +117,7 @@ public class WeaponManager : MonoBehaviour
         fireRateTimer += Time.deltaTime;
         if (fireRateTimer < fireRate) return false;//차탄까지 텀이 아직 남았을때
         if (ammo.currentAmmo == 0) return false;//현재 총알이 0일때
+        if (aim.frontColliderBox.isWall) return false;//벽에 너무 붙어있을때
         if (actions.currentState == actions.Reload) return false;// 현재 상태가 재장전 상태일때
         if (actions.currentState == actions.Swap) return false;
         if (semiAuto && Input.GetKeyDown(KeyCode.Mouse0)) return true;//반자동

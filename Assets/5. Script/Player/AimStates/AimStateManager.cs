@@ -35,10 +35,12 @@ public class AimStateManager : MonoBehaviour
     public TwoBoneIKConstraint lHandIk;
     [Header("Weapon")]
     public WeaponClassManager weaponClassManager;
-    
+    [Header("FrontBox")]
+    public FrontColliderbox frontColliderBox;
     // Start is called before the first frame update
     void Start()
     {
+        frontColliderBox = GetComponentInChildren<FrontColliderbox>();
         moving = GetComponent<MovementStateManager>();
         weaponClassManager = GetComponent<WeaponClassManager>();
         xFollowPos = camFollowPos.localPosition.x;
@@ -69,21 +71,6 @@ public class AimStateManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(screenCentre);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimMask))
         {
-
-            //if (Vector3.Distance(aimPos.position, hit.point) >= 0.0001f)
-            //{
-            //    Debug.Log(Vector3.Distance(aimPos.position, hit.point));
-            //    bodyIK.weight = 1;
-            //    headIK.weight = 1;
-            //    rHnadIK.weight = 1;
-            //}
-            //else
-            //{
-            //    Debug.Log("°Å¸®¸Ø");
-            //    bodyIK.weight = 0;
-            //    headIK.weight = 0;
-            //    rHnadIK.weight = 0;
-            //}
             aimPos.position = Vector3.Lerp(aimPos.position, hit.point, aimSmoothSpeed * Time.deltaTime);
             aimPos.LookAt(Camera.main.transform);
         }
