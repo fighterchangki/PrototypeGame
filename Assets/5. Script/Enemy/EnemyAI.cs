@@ -88,16 +88,19 @@ public class EnemyAI : MonoBehaviour
     }
     public void Attack()
     {
-        enemyAttackRange.GetComponent<BoxCollider>().enabled = false;
+        enemyAttackRange.GetComponent<BoxCollider>().enabled = true;
         animator.SetTrigger("Attack");
-        
     }
     public void returnAttack()
     {
         if (stateChange == State.Attack)
         {
-            enemyAttackRange.GetComponent<BoxCollider>().enabled = true;
-            Invoke("Attack", 1.5f);
+            enemyAttackRange.GetComponent<BoxCollider>().enabled = false;
+            Invoke("Attack", 3f);
+        }
+        else
+        {
+            enemyAttackRange.GetComponent<BoxCollider>().enabled = false;
         }
     }
     public void returnState()
@@ -115,15 +118,14 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("ÇÃ·¹ÀÌ¾î¶û ¸ÂºÎµúÈû");
-                stateChange = State.Attack;
+            stateChange = State.Attack;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            returnState();
+            stateChange = State.Running;
         }
     }
 }
