@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         enemyCountch = enemy.transform.childCount;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     void FindEnemy()
     {
@@ -40,8 +42,16 @@ public class GameManager : MonoBehaviour
         {
             enemyCountch = enemy.transform.childCount;
         }
+        MouseHide();
     }
-    
+    void MouseHide()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
     // Update is called once per frame
-    
+
 }

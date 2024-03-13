@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text bulletText;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject weaponPanel;
-    [Serializable]
+    [SerializeField] private Button homeButton;
     public class WeaponUI
     {
         public GameObject weapon;
@@ -23,7 +23,15 @@ public class UIManager : MonoBehaviour
     {
         weaponPanel = GameObject.Find("WeaponPanel");
         player = GameObject.Find("Player");
+        if (homeButton != null)
+        {
+            homeButton.onClick.AddListener(HomeButtonClick);
+        }
         ChangeWeapon();
+    }
+    public void HomeButtonClick()
+    {
+        SceneChangeManager.Instance.SceneChange("StartScene");
     }
     public void ChangeWeapon()
     {

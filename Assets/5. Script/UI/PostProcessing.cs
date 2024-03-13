@@ -1,50 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
 public class PostProcessing : MonoBehaviour
 {
-    public float intensity = 0;
+    public float intensity;
+    public float currentintensity = 0;
 
-    PostProcessVolume _volume;
-    Vignette _vignette;
+    Volume _volume;
+    UnityEngine.Rendering.Universal.Vignette  _vignette;
     // Start is called before the first frame update
     void Start()
     {
-        _volume = GetComponent<PostProcessVolume>();
-        _volume.profile.TryGetSettings<Vignette>(out _vignette);
+        _volume = GetComponent<Volume>();
+        _volume.profile.TryGet(out _vignette);
         if (!_vignette)
         {
             print("error");
         }
         else
         {
-            _vignette.enabled.Override(false);
+            _vignette.intensity.Override(0);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-            StartCoroutine(TakeDamageEffect());
+       
     }
-    private IEnumerator TakeDamageEffect()
+    public IEnumerator TakeDamageEffect()
     {
-        intensity = 0.4f;
-        _vignette.enabled.Override(true);
-        _vignette.intensity.Override(0.4f);
+        currentintensity = intensity;
+        _vignette.intensity.Override(currentintensity);
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(currentintensity);
 
-        while (intensity > 0)
+        while (currentintensity > 0)
         {
-            intensity -= 0.01f;
-            if (intensity < 0) intensity = 0;
-            _vignette.intensity.Override(intensity);
+            currentintensity -= 0.01f;
+            if (currentintensity < 0) currentintensity = 0;
+            _vignette.intensity.Override(currentintensity);
             yield return new WaitForSeconds(0.1f);
         }
-        _vignette.enabled.Override(false);
+        _vignette.intensity.Override(intensity);
+        StopCoroutine(TakeDamageEffect());
         yield break;
     }
 }

@@ -20,26 +20,30 @@ public class EnemyAttackRange : MonoBehaviour
         {
             isAttack = false;
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
+        else
         {
-            if (!isAttack)
-            {
-                isAttack = true;
-                other.gameObject.GetComponent<PlayerStatus>().Damege(damege);
-            }
-            //other.GetComponent<>
+            isAttack = true;
+
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             if (isAttack)
             {
                 isAttack = false;
+                other.gameObject.GetComponent<PlayerStatus>().Damege(damege);
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (!isAttack)
+            {
+                isAttack = true;
                 Debug.Log("맞음나감!!!!");
             }
         }

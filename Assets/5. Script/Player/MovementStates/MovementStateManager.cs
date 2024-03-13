@@ -43,7 +43,7 @@ public class MovementStateManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MouseHide();
+        //MouseHide();
         GetDirectionAndMove();
         Gravity();
         Falling();
@@ -57,11 +57,7 @@ public class MovementStateManager : MonoBehaviour
         currentState.EnterState(this);
     }
     //마우스 커서 숨기는 함수
-    void MouseHide()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    
     //이동관련 스크립트
     void GetDirectionAndMove()
     {
