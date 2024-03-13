@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemyRange : MonoBehaviour
 {
     EnemyAI enemyAI;
-    public CapsuleCollider capsuleCollider;
+    public BoxCollider boxCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        capsuleCollider = GetComponent<CapsuleCollider>();
+        boxCollider = GetComponent<BoxCollider>();
         enemyAI = GetComponentInParent<EnemyAI>();
     }
     // Update is called once per frame
