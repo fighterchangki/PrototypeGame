@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text bulletText;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject weaponPanel;
+    [SerializeField] private GameObject itemPickUpText;
     [SerializeField] private Button homeButton;
     public class WeaponUI
     {
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
     {
         weaponPanel = GameObject.Find("WeaponPanel");
         player = GameObject.Find("Player");
+        itemPickUpText = GameObject.Find("PickUpText");
         if (homeButton != null)
         {
             homeButton.onClick.AddListener(HomeButtonClick);
@@ -61,6 +63,10 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public void PickUp(bool isPickUp)
+    {
+        itemPickUpText.SetActive(isPickUp);
     }
     #region HitÈ¿°ú
     public void Hit()

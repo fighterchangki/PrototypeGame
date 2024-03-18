@@ -75,7 +75,6 @@ public class WeaponClassManager : MonoBehaviour
         weapons[currentWeaponIndex].gameObject.SetActive(true);
         weaponsUI[currentWeaponIndex].SetActive(true);
         actions.uimanager.ChangeWeapon();
-
     }
     public void WeaponPutAway()
     {

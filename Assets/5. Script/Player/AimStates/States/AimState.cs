@@ -10,10 +10,11 @@ public class AimState : AimBaseState
         aim.currentFov = aim.adsFov;
         switch (aim.weaponClassManager.weapons[aim.weaponClassManager.currentWeaponIndex].weaponStyle)
         {
-
             case WeaponStyle.rifle:
                 Debug.Log("라이플입니다");
                 aim.lHandIk.data.targetPositionWeight = Mathf.Lerp(0.15f, 1, 0.00001f * Time.deltaTime);
+                aim.weaponClassManager.leftHandIk.data.targetRotationWeight = 1;
+                aim.weaponClassManager.leftHandIk.data.hintWeight = 1;
                 break;
             case WeaponStyle.pistol:
                 aim.weaponClassManager.leftHandIk.data.targetPositionWeight = 0;

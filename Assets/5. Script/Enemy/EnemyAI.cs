@@ -51,7 +51,6 @@ public class EnemyAI : MonoBehaviour
             destination = target.position;
             agent.destination = destination;
         }
-        
     }
     void StateBehaviour()
     {

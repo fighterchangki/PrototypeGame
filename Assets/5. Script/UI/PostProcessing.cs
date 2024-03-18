@@ -25,10 +25,6 @@ public class PostProcessing : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-       
-    }
     public IEnumerator TakeDamageEffect()
     {
         currentintensity = intensity;
@@ -44,7 +40,7 @@ public class PostProcessing : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         _vignette.intensity.Override(intensity);
-        StopCoroutine(TakeDamageEffect());
+        
         yield break;
     }
 }

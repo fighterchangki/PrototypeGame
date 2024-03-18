@@ -37,9 +37,12 @@ public class AimStateManager : MonoBehaviour
     public WeaponClassManager weaponClassManager;
     [Header("FrontBox")]
     public FrontColliderbox frontColliderBox;
+    [Header("Manager")]
+    public UIManager uIManager;
     // Start is called before the first frame update
     void Start()
     {
+        uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         frontColliderBox = GetComponentInChildren<FrontColliderbox>();
         moving = GetComponent<MovementStateManager>();
         weaponClassManager = GetComponent<WeaponClassManager>();
@@ -69,10 +72,28 @@ public class AimStateManager : MonoBehaviour
         vCam.m_Lens.FieldOfView = Mathf.Lerp(vCam.m_Lens.FieldOfView, currentFov, fovSmoothSpeed * Time.deltaTime);
         Vector2 screenCentre = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray ray = Camera.main.ScreenPointToRay(screenCentre);
+        
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, aimMask))
         {
+            float distance = Vector3.Distance(transform.position, hit.collider.transform.position);
             aimPos.position = Vector3.Lerp(aimPos.position, hit.point, aimSmoothSpeed * Time.deltaTime);
             aimPos.LookAt(Camera.main.transform);
+            if (distance < 1.5f)
+            {
+                switch (hit.collider.gameObject.tag)
+                {
+                    case "Medicine":
+                        uIManager.PickUp(true);
+                        break;
+                    default:
+                        uIManager.PickUp(false);
+                        break;
+                }
+            }
+            else
+            {
+                uIManager.PickUp(false);
+            }
         }
         else
         {

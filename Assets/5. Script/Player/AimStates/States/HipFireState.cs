@@ -13,11 +13,13 @@ public class HipFireState : AimBaseState
         switch (aim.weaponClassManager.weapons[aim.weaponClassManager.currentWeaponIndex].weaponStyle)
         {
             case WeaponStyle.rifle:
+                Debug.Log("힙파이어 라이플");
                 aim.lHandIk.data.targetPositionWeight = Mathf.Lerp(1, 0.15f, 0.0000001f * Time.deltaTime);
                 aim.weaponClassManager.leftHandIk.data.targetRotationWeight = 1;
                 aim.weaponClassManager.leftHandIk.data.hintWeight = 1;
                 break;
             case WeaponStyle.pistol:
+                Debug.Log("힙파이어 피스톨");
                 aim.weaponClassManager.leftHandIk.data.targetPositionWeight = 0;
                 aim.weaponClassManager.leftHandIk.data.targetRotationWeight = 0;
                 aim.weaponClassManager.leftHandIk.data.hintWeight = 0;

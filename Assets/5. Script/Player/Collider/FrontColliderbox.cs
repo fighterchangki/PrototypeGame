@@ -20,7 +20,7 @@ public class FrontColliderbox : MonoBehaviour
     {
         if (other.gameObject.tag == "Wall")
         {
-            headIK.weight = Mathf.Lerp(headIK.weight, 0,5f * Time.deltaTime);
+            headIK.weight = Mathf.Lerp(headIK.weight, 0, 5f * Time.deltaTime);
             bodyIK.weight = Mathf.Lerp(bodyIK.weight, 0, 5f * Time.deltaTime);
             rHnadIK.weight = Mathf.Lerp(rHnadIK.weight, 0, 3f * Time.deltaTime);
             isWall = true;
@@ -30,9 +30,10 @@ public class FrontColliderbox : MonoBehaviour
     {
         if (other.gameObject.tag == "Wall")
         {
-            headIK.weight = Mathf.Lerp(headIK.weight, 1, 5f * Time.deltaTime);
-            bodyIK.weight = Mathf.Lerp(bodyIK.weight, 1,5f * Time.deltaTime);
-            rHnadIK.weight = Mathf.Lerp(rHnadIK.weight, 1, 3f * Time.deltaTime);
+            Debug.Log("∫Æ æ»¥Í¿”");
+            headIK.weight = Mathf.Lerp(headIK.weight, 1, 50f * Time.deltaTime);
+            bodyIK.weight = Mathf.Lerp(bodyIK.weight, 1, 50f * Time.deltaTime);
+            rHnadIK.weight = Mathf.Lerp(rHnadIK.weight, 1, 50f * Time.deltaTime);
             isWall = false;
         }
     }
