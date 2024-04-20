@@ -39,7 +39,6 @@ public class ActionStateManager : MonoBehaviour
                 return;
             if (scrollWeapon == weaponClass.currentWeaponIndex)
                 return;
-            
         }
         currentState = state;
         currentState.EnterState(this);

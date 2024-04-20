@@ -10,6 +10,7 @@ public class AimStateManager : MonoBehaviour
     public AimBaseState currentState;
     public HipFireState Hip = new HipFireState();
     public AimState Aim = new AimState();
+    public bool isPickup;
     [Header("Camera")]
     public Cinemachine.AxisState xAxis,yAxis;
     [SerializeField] Transform camFollowPos;
@@ -39,9 +40,11 @@ public class AimStateManager : MonoBehaviour
     public FrontColliderbox frontColliderBox;
     [Header("Manager")]
     public UIManager uIManager;
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         frontColliderBox = GetComponentInChildren<FrontColliderbox>();
         moving = GetComponent<MovementStateManager>();
@@ -84,6 +87,12 @@ public class AimStateManager : MonoBehaviour
                 {
                     case "Medicine":
                         uIManager.PickUp(true);
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            gameManager.vacinCount++;
+                            uIManager.UpdateVacin();
+                            Destroy(hit.collider.gameObject);
+                        }
                         break;
                     default:
                         uIManager.PickUp(false);

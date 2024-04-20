@@ -12,7 +12,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject weaponPanel;
     [SerializeField] private GameObject itemPickUpText;
+    [SerializeField] private TMP_Text vacinText;
     [SerializeField] private Button homeButton;
+    [SerializeField] private GameManager gameManager;
     public class WeaponUI
     {
         public GameObject weapon;
@@ -22,6 +24,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         weaponPanel = GameObject.Find("WeaponPanel");
         player = GameObject.Find("Player");
         itemPickUpText = GameObject.Find("PickUpText");
@@ -30,11 +33,13 @@ public class UIManager : MonoBehaviour
             homeButton.onClick.AddListener(HomeButtonClick);
         }
         ChangeWeapon();
+        UpdateVacin();
     }
     public void HomeButtonClick()
     {
         SceneChangeManager.Instance.SceneChange("StartScene");
     }
+
     public void ChangeWeapon()
     {
         Transform[] allPlayerchildren = player.GetComponentsInChildren<Transform>();
@@ -54,6 +59,10 @@ public class UIManager : MonoBehaviour
                 weaponUI.weaponUI = allWeaponPanelchildren[i].gameObject;
             }
         }
+    }
+    public void UpdateVacin()
+    {
+        vacinText.text = "Vacin : "+gameManager.vacinCount + "/20";
     }
     public void UpdateBulletInfo()
     {

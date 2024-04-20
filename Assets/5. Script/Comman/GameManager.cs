@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private UIManager uiManager;
     [SerializeField] int enemyCount;
+    [SerializeField] public int vacinCount = 0;
     public int enemyCountch
     {
         get { return enemyCount; }
