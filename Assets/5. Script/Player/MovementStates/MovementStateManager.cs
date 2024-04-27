@@ -21,7 +21,7 @@ public class MovementStateManager : MonoBehaviour
     [SerializeField]LayerMask groundMask = 3;
     Vector3 spherePos;
     [SerializeField]float gravity = -9.81f;
-    [SerializeField] float jumpForce = 10;
+    [SerializeField] public float jumpForce = 10;
     [HideInInspector] public bool jumped;
     Vector3 velocity;
 

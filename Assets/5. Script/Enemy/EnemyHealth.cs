@@ -36,7 +36,6 @@ public class EnemyHealth : MonoBehaviour
     }
     void EnemyDestory()
     {
-        Debug.Log("∞¥√º ªË¡¶");
         Destroy(gameObject);
     }
     

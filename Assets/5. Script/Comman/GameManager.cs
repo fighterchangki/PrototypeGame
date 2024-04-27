@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TimelineAsset timeline;
     [SerializeField] public CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] public GameObject EndingCamePos;
+    [SerializeField] public GameObject DeadCamePos;
+
     [SerializeField] public Action endingAction;
     public int enemyCountch
     {
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         //totalvacinCount = 5;
         player = GameObject.Find("Player");
+        DeadCamePos = GameObject.Find("DeadCamPos");
         EndingCamePos = GameObject.Find("EndingCamePos");
         cinemachineVirtualCamera = GameObject.Find("CM_vcam1").GetComponent<CinemachineVirtualCamera>();
         PlayableDirector = GameObject.Find("Director").GetComponent<PlayableDirector>();
@@ -53,11 +56,17 @@ public class GameManager : MonoBehaviour
             enemyArray.Add(enemy.transform.GetChild(i).gameObject);
         }
     }
+    public void DeadEnding()
+    {
+        cinemachineVirtualCamera.Follow = DeadCamePos.transform;
+        cinemachineVirtualCamera.LookAt = DeadCamePos.transform;
+    }
     public void Ending()
     {
         endingAction += StartTimeline;
         fadeInOut.FadeIn(2f, endingAction);
     }
+
     public void StartTimeline()
     {
         player.SetActive(false);
@@ -84,6 +93,7 @@ public class GameManager : MonoBehaviour
         {
             enemyCountch = enemy.transform.childCount;
         }
+        
         MouseHide();
     }
     void MouseHide()
