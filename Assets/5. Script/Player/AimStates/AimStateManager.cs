@@ -41,9 +41,12 @@ public class AimStateManager : MonoBehaviour
     [Header("Manager")]
     public UIManager uIManager;
     public GameManager gameManager;
+    [Header("GameObject")]
+    public GameObject goalObj;
     // Start is called before the first frame update
     void Start()
     {
+        goalObj = GameObject.Find("Goal");
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         frontColliderBox = GetComponentInChildren<FrontColliderbox>();
@@ -91,6 +94,11 @@ public class AimStateManager : MonoBehaviour
                         {
                             gameManager.vacinCount++;
                             uIManager.UpdateVacin();
+                            if (gameManager.vacinCount >= gameManager.totalvacinCount)
+                            {
+                                //Debug.Log(gameManager.vacinCount+"Æ÷Å» »ý¼º"+ gameManager.totalvacinCount);
+                                goalObj.SetActive(true);
+                            }
                             Destroy(hit.collider.gameObject);
                         }
                         break;
